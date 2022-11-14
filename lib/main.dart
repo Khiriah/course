@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  await Firebase.initializeApp();
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {

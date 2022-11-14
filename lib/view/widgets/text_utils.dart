@@ -1,17 +1,23 @@
+
+
 import 'package:flutter/material.dart';
 
- TextUtils extends StatelessWidget {
+class TextUtils extends StatelessWidget {
 
   final String text ;
   final double fontSize;
   final FontWeight fontWeight;
+  final Color color;
+  final TextDecoration underLine;
 
 
    TextUtils({
      required this .text,
      required this .fontSize,
      required this .fontWeight,
-     Key? key
+      required this.color,
+     required this.underLine,
+     Key? key,
    }) : super(key: key);
 
   @override
@@ -19,10 +25,11 @@ import 'package:flutter/material.dart';
     return  Text(
       text,
       style: TextStyle(
-          color: Colors.white,
+        decoration: underLine,
+          color: color,
           fontSize: fontSize,
           fontWeight: fontWeight
       ),
-    )
+    );
   }
 }
