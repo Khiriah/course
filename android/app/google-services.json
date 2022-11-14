@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "805674915358",
+    "project_id": "khairo-shop-getx",
+    "storage_bucket": "khairo-shop-getx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805674915358:android:594a4dee3d82aa7bf5c00f",
+        "android_client_info": {
+          "package_name": "com.example.course"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805674915358-2fkcvl0gldhpbrpaadef8f5h10i77s7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZcCkwK8p6Vx_JcjLVeixRIGvJiP2QUA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805674915358-2fkcvl0gldhpbrpaadef8f5h10i77s7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
