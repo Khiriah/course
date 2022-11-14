@@ -2,130 +2,125 @@ import 'package:course/logic/controller/auth_controller.dart';
 import 'package:course/utills/my_string.dart';
 import 'package:course/utills/theme.dart';
 import 'package:course/view/widgets/auth_button.dart';
+import 'package:course/view/widgets/auth_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import '../../widgets/auth_text_form_field.dart';
+class ForgotPasswordScreen extends StatelessWidget {
+  ForgotPasswordScreen({Key? key}) : super(key: key);
 
+  final TextEditingController emailController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final controller = Get.find<AuthController>();
 
-class ForgotPassword extends StatelessWidget {
-   ForgotPassword({Key? key}) : super(key: key);
-  final fromKey = GlobalKey<FormState>();
-   final cotroller = Get.find<AuthController>();
-   final TextEditingController emailController = TextEditingController();
-   final TextEditingController passwordController = TextEditingController();
-
-   @override
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        centerTitle: true,
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
-        title: Text('Forgot Password',style: TextStyle(color:Get.isDarkMode ? mainColor : pinkClr,),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
+        appBar: AppBar(
+          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          centerTitle:  true,
+          elevation: 0,
+          title: Text(
+              'forget password',
+              style: TextStyle(
+                color: Get.isDarkMode ? mainColor : pinkClr,
+              )
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back),
+            color: Get.isDarkMode ? Colors.white : darkGreyClr,
+          ),
         ),
-        leading: IconButton(
-          onPressed: (){
-
-          },
-          icon:Icon(Icons.arrow_back) ,
-          color:  Get.isDarkMode ? Colors.white : Colors.black,
-        ),
-
-      ),
-      backgroundColor:Get.isDarkMode ? Colors.white : darkGreyClr,
-      body:  Form(
-        key: fromKey,
-        child: SingleChildScrollView(
+        // backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+        body: Form(
+          key: formKey,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20,),
-            child:
-            Column(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
               children: [
-                Align(alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: (){
-                  Get.back();
-                  },
-                  icon: Icon(Icons.close_rounded,
-                  color:  Colors.white ),
-                ),),
-                SizedBox(height: 20,),
-                Text('If you want to recover your account, then please provide your email ID below..',
+                Align(
+                  alignment:  Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.close_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'if you want to recorve your account,then please provide your email Id below..',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                color:Colors.white),
+                    color: Get.isDarkMode ? Colors.white : Colors.black,
+                  ),
                 ),
-                SizedBox(height: 50,),
-                Image.asset("assets/images/forgetpass copy.png",
-                width: 250,),
-                SizedBox(height: 50,),
+                const  SizedBox(
+                  height:50,
+                ),
+                Image.asset('assets/images/forgetpass copy.png',
+                  width: 350,
+                ),
+                const  SizedBox(
+                  height:50,
+                ),
                 AuthTextFormField(
                   controller: emailController,
                   obscureText: false,
                   validator: (value) {
                     if (!RegExp(validationEmail).hasMatch(value)) {
-                      return 'Invalid Email';
+                      return 'Invalid email';
                     } else {
                       return null;
                     }
                   },
-                  prefixIcon: Get.isDarkMode
-                      ? Image.asset("assets/images/email.png")
+                  prefixIcone: Get.isDarkMode
+                      ? Image.asset(
+                      'assets/images/forgetpass copy.png')
                       : Icon(
-                    Icons.email,
+                    Icons.email_rounded,
                     color: pinkClr,
-                    size: 30,
+                    size: 20,
                   ),
-                  suffixIcon: Text(""),
-                  hintText: 'Email',
+                  suffixIcone: const Text(""),
+                  hintText: "Email",
                 ),
-                SizedBox(
-                  height: 50,
+                const  SizedBox(
+                  height:30,
                 ),
-                // GetBuilder<AuthController>(builder: (_) {
-                //   return AuthTextFormField(
-                //     controller: passwordController,
-                //     obscureText: cotroller.isVisibilty ? false : true,
-                //     validator: (value) {
-                //       if (value.toString().length < 6) {
-                //         return 'Password should be longer or equal to 6 characters';
-                //       } else {
-                //         return null;
-                //       }
-                //     },
-                //     prefixIcon: Get.isDarkMode
-                //         ? Image.asset("assets/images/lock.png")
-                //         : Icon(
-                //       Icons.person,
-                //       color: pinkClr,
-                //       size: 30,
-                //     ),
-                //     suffixIcon: IconButton(
-                //       onPressed: () {
-                //         cotroller.Visibilty();
-                //       },
-                //       icon: cotroller.isVisibilty
-                //           ? Icon(Icons.visibility_off)
-                //           : Icon(Icons.visibility),
-                //       color: Colors.black,
-                //     ),
-                //     hintText: 'Password',
-                //   );
-                // }),
-                AuthButton(text: "SEND", onPressed: (){
-
-                })
-
+                GetBuilder<AuthController>(builder: (_){
+                  return AuthButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()){
+                        String email = emailController.text.trim();
+                        controller.resetPassword(email);
+                      }
+                    },
+                    text: "SEND",
+                  );
+                }),
+                // AuthButtone(
+                //   onPressed: () {},
+                //   text: "SEND",
+                // ),
               ],
             ),
           ),
         ),
-
-
       ),
-    ),
 
     );
+
   }
 }

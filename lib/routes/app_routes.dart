@@ -11,7 +11,7 @@ class AppRoutes {
     GetPage(name: Routes.welcomeScreen, page: () => const WelcomeScreen()),
     GetPage(name: Routes.loginScreen, page: () =>  LoginScreen(),binding:AuthBinding()),
     GetPage(name: Routes.signUpScreen, page: () => SignUpScreen(),binding:AuthBinding() ),
-    GetPage(name: Routes.forgotPasswordScreen, page: () =>  ForgotPassword(),binding:AuthBinding()),
+    GetPage(name: Routes.forgotPasswordScreen, page: () =>  ForgotPasswordScreen(),binding:AuthBinding()),
 
   ];
 
