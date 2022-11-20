@@ -1,6 +1,8 @@
+import 'package:course/view/widgets/category/category_widget.dart';
 import 'package:course/view/widgets/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class CategoryScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-
+            CategoryWidget(),
           ],
         ),
       ),

@@ -36,6 +36,11 @@ dependencies:
   get_storage: ^2.0.3
   google_fonts: ^2.1.0
   http: ^0.13.4
+  badges: ^2.0.2
+  smooth_page_indicator: ^1.0.0+2
+  carousel_slider: ^4.0.0
+  readmore: ^2.1.0
+  flutter_simple_rating_bar: 0.0.3
   firebase_core_platform_interface: 4.5.1
   flutter:
     sdk: flutter

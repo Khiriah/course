@@ -1,4 +1,8 @@
 import 'package:course/model/product_models.dart';
+import 'package:course/view/widgets/product_details/add_cart.dart';
+import 'package:course/view/widgets/product_details/clothes_info.dart';
+import 'package:course/view/widgets/product_details/image_sliders.dart';
+import 'package:course/view/widgets/product_details/size_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,20 +20,20 @@ class ProductDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ImageSliders(
-              //   imageUrl: productModels.image,
-              // ),
-              // ClothesInfo(
-              //   title: productModels.title,
-              //   productId: productModels.id,
-              //   rate: productModels.rating.rate,
-              //   description: productModels.description,
-              // ),
-              // const SizeList(),
-              // AddCart(
-              //   price: productModels.price,
-              //   productModels: productModels,
-              // ),
+              ImageSliders(
+                imageUrl: productModels.image,
+              ),
+              ClothesInfo(
+                title: productModels.title,
+                productId: productModels.id,
+                rate: productModels.rating.rate,
+                description: productModels.description,
+              ),
+              const SizeList(),
+              AddCart(
+                price: productModels.price,
+                productModels: productModels,
+              ),
             ],
           ),
         ),

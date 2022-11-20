@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.white,
                       underLine: TextDecoration.none),
                   SizedBox(height: 20,),
-                  SearchFromText(),
+                  SearchFormText(),
                 ],
                 ),
               ),
