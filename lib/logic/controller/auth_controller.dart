@@ -14,6 +14,7 @@ class AuthController extends GetxController {
   bool isCheckBox = false; //هنا مع التشك بوكس
   var disUserName = '';
   var displayUserPhoto = '';
+
   FirebaseAuth auth = FirebaseAuth
       .instance; // استخدم فار اذا ماكنت اعرف نوع المتغير ايش هو بالضبط
   var googleSignIn = GoogleSignIn();
@@ -46,10 +47,7 @@ class AuthController extends GetxController {
         disUserName = name;
         auth.currentUser!.updateDisplayName(name);
       });
-
       update();
-
-
     } on FirebaseAuthException catch (e) {
       String title = e.code
           .replaceAll(RegExp('-'), '')

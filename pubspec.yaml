@@ -37,7 +37,6 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.4
   firebase_core_platform_interface: 4.5.1
-
   flutter:
     sdk: flutter
 
