@@ -4,7 +4,7 @@ import 'package:course/logic/controller/product_controller.dart';
 import 'package:course/model/product_models.dart';
 import 'package:course/utills/theme.dart';
 import 'package:course/view/screens/product_details_screen.dart';
-import 'package:course/view/widgets/text_utils.dart';
+import 'package:course/utills/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

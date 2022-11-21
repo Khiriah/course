@@ -6,12 +6,11 @@ import 'package:course/routes/app_routes.dart';
 import 'package:course/utills/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
   final controller = Get.find<MainController>();
- final cartController = Get.find<CartController>();
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,73 +41,73 @@ class MainScreen extends StatelessWidget {
                   ),
                 ),
               ],
-                backgroundColor: Get.isDarkMode ? pinkClr : mainColor,
+              backgroundColor: Get.isDarkMode ? pinkClr : mainColor,
 
-                title: Text(controller.title[controller.currentIndex.value]),
-                centerTitle: true,
+              title: Text(controller.title[controller.currentIndex.value]),
+              centerTitle: true,
 
-              ),
-              bottomNavigationBar: BottomNavigationBar( //هنا بداية البوتوم نافيقيشن بار
-                currentIndex: controller.currentIndex.value,
-                type: BottomNavigationBarType.fixed,
-                items: [
-                  BottomNavigationBarItem(
-                    activeIcon: Icon(
-                      Icons.home,
-                      color: Get.isDarkMode ? pinkClr : mainColor,
-                    ),
-                    icon: Icon(
-                      Icons.home,
-                      color: Get.isDarkMode ? Colors.white : Colors.black ,
-                    ),
-                    label: '',
+            ),
+            bottomNavigationBar: BottomNavigationBar( //هنا بداية البوتوم نافيقيشن بار
+              currentIndex: controller.currentIndex.value,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                BottomNavigationBarItem(
+                  activeIcon: Icon(
+                    Icons.home,
+                    color: Get.isDarkMode ? pinkClr : mainColor,
                   ),
-                  BottomNavigationBarItem(
-                    activeIcon: Icon(
-                      Icons.category,
-                      color: Get.isDarkMode ? pinkClr : mainColor,
-                    ),
-                    icon: Icon(
-                      Icons.category,
-                      color: Get.isDarkMode ? Colors.white : Colors.black ,
-                    ),
-                    label: '',
+                  icon: Icon(
+                    Icons.home,
+                    color: Get.isDarkMode ? Colors.white : Colors.black ,
                   ),
-                  BottomNavigationBarItem(
-                    activeIcon: Icon(
-                      Icons.favorite,
-                      color:Get.isDarkMode ? pinkClr : mainColor,
-                    ),
-                    icon: Icon(
-                      Icons.favorite,
-                      color: Get.isDarkMode ? Colors.white : Colors.black ,
-                    ),
-                    label: '',
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  activeIcon: Icon(
+                    Icons.category,
+                    color: Get.isDarkMode ? pinkClr : mainColor,
                   ),
+                  icon: Icon(
+                    Icons.category,
+                    color: Get.isDarkMode ? Colors.white : Colors.black ,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  activeIcon: Icon(
+                    Icons.favorite,
+                    color:Get.isDarkMode ? pinkClr : mainColor,
+                  ),
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Get.isDarkMode ? Colors.white : Colors.black ,
+                  ),
+                  label: '',
+                ),
 
-                  BottomNavigationBarItem(
-                    activeIcon: Icon(
-                      Icons.settings,
-                      color: Get.isDarkMode ? pinkClr : mainColor,
-                    ),
-                    icon: Icon(
-                      Icons.settings,
-                      color: Get.isDarkMode ? Colors.white : Colors.black ,
-                    ),
-                    label: '',
+                BottomNavigationBarItem(
+                  activeIcon: Icon(
+                    Icons.settings,
+                    color: Get.isDarkMode ? pinkClr : mainColor,
                   ),
-                ],
+                  icon: Icon(
+                    Icons.settings,
+                    color: Get.isDarkMode ? Colors.white : Colors.black ,
+                  ),
+                  label: '',
+                ),
+              ],
 
-                onTap: (index) {
-                  controller.currentIndex.value = index;
-                },
-              ),
-              body: IndexedStack(
-                index: controller.currentIndex.value,
-                children: controller.tabs.value,
-              ),
-            );
-      },
+              onTap: (index) {
+                controller.currentIndex.value = index;
+              },
+            ),
+            body: IndexedStack(
+              index: controller.currentIndex.value,
+              children: controller.tabs.value,
+            ),
+          );
+        },
       ),
     );
   }

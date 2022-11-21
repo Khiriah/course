@@ -2,7 +2,7 @@ import 'package:course/logic/controller/cart_controller.dart';
 import 'package:course/utills/theme.dart';
 import 'package:course/view/widgets/cart/cart_product_card.dart';
 import 'package:course/view/widgets/cart/empty_cart.dart';
-import 'package:course/view/widgets/cart_total.dart';
+import 'package:course/view/widgets/cart/cart_total.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

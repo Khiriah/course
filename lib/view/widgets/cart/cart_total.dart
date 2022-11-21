@@ -4,7 +4,7 @@ import 'package:course/utills/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'text_utils.dart';
+import '../../../utills/text_utils.dart';
 
 class CartTotal extends StatelessWidget {
   CartTotal({Key? key}) : super(key: key);

@@ -2,68 +2,67 @@ import 'package:course/logic/controller/auth_controller.dart';
 import 'package:course/routes/app_routes.dart';
 import 'package:course/utills/my_string.dart';
 import 'package:course/utills/theme.dart';
-import 'package:course/view/widgets/auth_button.dart';
-import 'package:course/view/widgets/auth_text_form_field.dart';
-import 'package:course/view/widgets/check_widget.dart';
-import 'package:course/view/widgets/container_under.dart';
-import 'package:course/view/widgets/text_utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:course/view/widgets/auth_widget/auth_button.dart';
+import 'package:course/view/widgets/auth_widget/auth_text_form_field.dart';
+import 'package:course/view/widgets/auth_widget/check_widget.dart';
+import 'package:course/view/widgets/auth_widget/container_under.dart';
+import 'package:course/utills/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
-  final fromKey = GlobalKey<FormState>(); // هنا نتحقق من الفالديشن انها صحيحة
+
+  final fromKey = GlobalKey<FormState>();
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  //final controller = Get.put(AuthController()); // اول ماافتح التطبيق يتم استدعائها
-  final controller =
-  Get.find<AuthController>(); // تبع الباسوورد هل هو مرئي او لا
+  final controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
-        elevation: 0,
-      ),
-      backgroundColor: context.theme.backgroundColor,
-      // backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
-      body: SingleChildScrollView(
-        child: Form(
-          key: fromKey,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
+          elevation: 0,
+        ),
+        backgroundColor: context.theme.backgroundColor,
+        body: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 1.3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 25, right: 25, top: 40),
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height / 1.3,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 25, right: 25, top: 40),
+                  child: Form(
+                    key: fromKey,
                     child: Column(
                       children: [
                         Row(
                           children: [
                             TextUtils(
-                                fontSize: 23,
-                                fontWeight: FontWeight.w500,
-                                text: "SIGN",
-                                color: Get.isDarkMode ? mainColor : pinkClr,
-                                underLine: TextDecoration.none),
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500,
+                              text: "SIGN",
+                              color: Get.isDarkMode ? pinkClr : mainColor,
+                              underLine: TextDecoration.none,
+                            ),
                             const SizedBox(
                               width: 3,
                             ),
                             TextUtils(
-                                fontSize: 23,
-                                fontWeight: FontWeight.w500,
-                                text: "UP",
-                                color: Get.isDarkMode
-                                    ? Colors.black
-                                    : Colors.black,
-                                underLine: TextDecoration.none),
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500,
+                              text: "UP",
+                              color:
+                              Get.isDarkMode ? Colors.white : Colors.black,
+                              underLine: TextDecoration.none,
+                            ),
                           ],
                         ),
                         const SizedBox(
@@ -80,16 +79,15 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             }
                           },
-                          prefixIcone: Get.isDarkMode
-                              ? Image.asset(
-                              '/Users/hananasiri/Desktop/hanan-shop/assets/images/user.png')
-                              : Icon(
-                            Icons.person,
-                            color: pinkClr,
-                            size: 30,
-                          ),
-                          suffixIcone: const Text(""),
-                          hintText: "user name",
+                        prefixIcone: Get.isDarkMode
+                            ? const Icon(
+                          Icons.person,
+                          color: pinkClr,
+                          size: 30,
+                        )
+                            : Image.asset('assets/images/user.png'), suffixIcone: const Text(""),
+                            hintText: 'User Name',
+
                         ),
                         const SizedBox(
                           height: 20,
@@ -105,15 +103,14 @@ class SignUpScreen extends StatelessWidget {
                             }
                           },
                           prefixIcone: Get.isDarkMode
-                              ? Image.asset(
-                              '/Users/hananasiri/Desktop/hanan-shop/assets/images/email.png')
-                              : Icon(
-                            Icons.email_rounded,
+                              ? const Icon(
+                            Icons.email,
                             color: pinkClr,
                             size: 30,
-                          ),
+                          )
+                              : Image.asset('assets/images/email.png'),
                           suffixIcone: const Text(""),
-                          hintText: "Email",
+                          hintText: 'Email',
                         ),
                         const SizedBox(
                           height: 20,
@@ -122,25 +119,23 @@ class SignUpScreen extends StatelessWidget {
                           builder: (_) {
                             return AuthTextFormField(
                               controller: passwordController,
-                              obscureText: controller.isVisibilty
-                                  ? false
-                                  : true, // هنا اظهرنا الباسوورد في علامة العين
+                              obscureText:
+                              controller.isVisibilty ? false : true,
                               validator: (value) {
                                 if (value.toString().length < 6) {
-                                  return 'password should be longer or equal to 6 charactors';
+                                  return 'Password should be longer or equal to 6 characters';
                                 } else {
                                   return null;
                                 }
                               },
                               prefixIcone: Get.isDarkMode
-                                  ? Image.asset(
-                                  '/Users/hananasiri/Desktop/hanan-shop/assets/images/lock.png')
-                                  : Icon(
+                                  ? const Icon(
                                 Icons.lock,
                                 color: pinkClr,
                                 size: 30,
-                              ),
-                              hintText: "Password",
+                              )
+                                  : Image.asset('assets/images/lock.png'),
+                              hintText: 'Password',
                               suffixIcone: IconButton(
                                 onPressed: () {
                                   controller.visibilty();
@@ -158,14 +153,13 @@ class SignUpScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         CheckWidget(),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
-
                         GetBuilder<AuthController>(
                           builder: (_) {
                             return AuthButton(
@@ -173,33 +167,36 @@ class SignUpScreen extends StatelessWidget {
                                 if (controller.isCheckBox == false) {
                                   Get.snackbar(
                                     "Check Box",
-                                    "please accept terms & conditions ",
+                                    "Please, Accept terms & conditions",
                                     snackPosition: SnackPosition.BOTTOM,
                                     backgroundColor: Colors.green,
-                                    colorText: Colors.black,
+                                    colorText: Colors.white,
                                   );
                                 } else if (fromKey.currentState!.validate()) {
                                   String name = nameController.text.trim();
                                   String email = emailController.text.trim();
                                   String password = passwordController.text;
                                   controller.signUpUsingFirebade(
-                                      name: name,
-                                      email: email,
-                                      password: password);
+                                    name: name,
+                                    email: email,
+                                    password: password,
+                                  );
+
+                                  controller.isCheckBox = true;
                                 }
-                                controller.isCheckBox = true;
                               },
-                              text: "Sign up",
+                              text: "SIGN UP",
                             );
                           },
                         )
                       ],
                     ),
-                  )),
+                  ),
+                ),
+              ),
               ContainerUnder(
-                text: 'Already have an Account?',
-                textType: 'Log in',
-                // underLine: TextDecoration.underline,
+                text: 'Already have an Account? ',
+                textType: "Log in",
                 onPressed: () {
                   Get.offNamed(Routes.loginScreen);
                 },

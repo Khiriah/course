@@ -1,12 +1,12 @@
 import 'package:course/logic/controller/auth_controller.dart';
 import 'package:course/routes/app_routes.dart';
 import 'package:course/utills/my_string.dart';
+import 'package:course/utills/text_utils.dart';
 import 'package:course/utills/theme.dart';
-import 'package:course/view/widgets/auth_button.dart';
-import 'package:course/view/widgets/auth_text_form_field.dart';
-import 'package:course/view/widgets/check_widget.dart';
-import 'package:course/view/widgets/container_under.dart';
-import 'package:course/view/widgets/text_utils.dart';
+import 'package:course/view/widgets/auth_widget/auth_button.dart';
+import 'package:course/view/widgets/auth_widget/auth_text_form_field.dart';
+import 'package:course/view/widgets/auth_widget/container_under.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -180,7 +180,7 @@ class LoginScreen extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color:
-                          Get.isDarkMode ? Colors.black : Colors.white,
+                          Get.isDarkMode ? Colors.white : Colors.black,
                           underLine:  TextDecoration.none,
                         ),
                         SizedBox(
@@ -189,12 +189,12 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell( // عشان اذا ضغطت ع الصورة تنضغط معي يصير لها اون تاب
-                              onTap: () {},
-                              child:
-                              Image.asset('assets/images/facebook.png',
-                              ),
-                            ),
+                            // InkWell( // عشان اذا ضغطت ع الصورة تنضغط معي يصير لها اون تاب
+                            //   onTap: () {},
+                            //   child:
+                            //   Image.asset('assets/images/facebook.png',
+                            //   ),
+                            // ),
                             SizedBox(
                               width: 12,
                             ),

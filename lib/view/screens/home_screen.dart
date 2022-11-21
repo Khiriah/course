@@ -1,10 +1,11 @@
 import 'package:course/utills/theme.dart';
 import 'package:course/view/widgets/home/card_item.dart';
 import 'package:course/view/widgets/home/search_from_text.dart';
-import 'package:course/view/widgets/text_utils.dart';
+import 'package:course/utills/text_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,9 +13,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: context.theme.backgroundColor,
-      body: Column(
+      child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
+        body: Column(
           children: [
             Container(
               width: double.infinity,
@@ -29,24 +30,24 @@ class HomeScreen extends StatelessWidget {
               child:  Padding(
                 padding: const EdgeInsets.only(left: 20,right: 20),
                 child:Column(
-                crossAxisAlignment:CrossAxisAlignment.start ,
-                children: [
-                  TextUtils(
-                      text: "Find Your",
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      underLine: TextDecoration.none),
-                  SizedBox(height: 5,),
-                  TextUtils(
-                      text: "INSPIRATION",
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      underLine: TextDecoration.none),
-                  SizedBox(height: 20,),
-                  SearchFormText(),
-                ],
+                  crossAxisAlignment:CrossAxisAlignment.start ,
+                  children: [
+                    TextUtils(
+                        text: "Find Your",
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        underLine: TextDecoration.none),
+                    SizedBox(height: 5,),
+                    TextUtils(
+                        text: "INSPIRATION",
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        underLine: TextDecoration.none),
+                    SizedBox(height: 20,),
+                    SearchFormText(),
+                  ],
                 ),
               ),
             ),
@@ -71,8 +72,8 @@ class HomeScreen extends StatelessWidget {
             ),
             CardItems(),
           ],
-      ),
         ),
+      ),
     );
   }
 }

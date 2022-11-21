@@ -1,6 +1,6 @@
 import 'package:course/logic/controller/auth_controller.dart';
 import 'package:course/utills/theme.dart';
-import 'package:course/view/widgets/text_utils.dart';
+import 'package:course/utills/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

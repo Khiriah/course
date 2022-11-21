@@ -12,15 +12,27 @@ class AuthController extends GetxController {
 
   bool isVisibilty = false; // هنا نستخدمها مع الباسوورد
   bool isCheckBox = false; //هنا مع التشك بوكس
-  var disUserName = '';
-  var displayUserPhoto = '';
-
+  var disUserName = ''.obs;
+  var displayUserEmail = ''.obs;
+  var displayUserPhoto = ''.obs;
   FirebaseAuth auth = FirebaseAuth
       .instance; // استخدم فار اذا ماكنت اعرف نوع المتغير ايش هو بالضبط
   var googleSignIn = GoogleSignIn();
 
   var isSignedIn = false;
   final GetStorage autBox = GetStorage();
+ User? get userProfiloe => auth.currentUser;
+
+  @override
+  void onInit() {
+ disUserName.value =
+(userProfiloe != null ? userProfiloe!.displayName : "")!;
+ displayUserPhoto.value =
+ (userProfiloe != null ? userProfiloe!.photoURL : "")!;
+ displayUserEmail.value = (userProfiloe != null ? userProfiloe!.email : "")!;
+
+    super.onInit();
+  }
 
   void visibilty() {
     isVisibilty = !isVisibilty;
@@ -44,7 +56,7 @@ class AuthController extends GetxController {
       await auth.createUserWithEmailAndPassword(
           email: email,
           password: password).then((value) {
-        disUserName = name;
+        disUserName.value = name;
         auth.currentUser!.updateDisplayName(name);
       });
       update();
@@ -90,7 +102,7 @@ class AuthController extends GetxController {
 
       await auth.signInWithEmailAndPassword(email: email,
           password: password).then((value) =>
-      disUserName = auth.currentUser!.displayName!);
+      disUserName.value = auth.currentUser!.displayName!);
 
       isSignedIn = true;
       autBox.write("auth",isSignedIn);
@@ -130,11 +142,16 @@ class AuthController extends GetxController {
   Future<void> googleSignUpApp() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      disUserName = googleUser!.displayName!;
-      displayUserPhoto = googleUser.photoUrl!;
-
-      autBox.write("auth",isSignedIn);
+      disUserName.value = googleUser!.displayName!;
+      displayUserPhoto.value = googleUser.photoUrl!;
+      GoogleSignInAuthentication googleSignInAuthentication = await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken
+      );
+      await auth.signInWithCredential(credential);
       isSignedIn = true;
+      autBox.write("auth",isSignedIn);
       update();
 
     } catch (e) {
@@ -189,8 +206,8 @@ class AuthController extends GetxController {
     try {
       await auth.signOut();
       await googleSignIn.signOut();
-      disUserName = '';
-      displayUserPhoto = '';
+      disUserName.value = '';
+      displayUserPhoto.value = '';
       isSignedIn = false;
 
       autBox.remove("auth");
